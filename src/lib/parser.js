@@ -10,8 +10,8 @@ exports.parser = function(line, emitCallback) {
   if(line.startsWith('@nickname')){
     return emitCallback('@nickname',line.substring(9));
   }
-  // if(line.startsWith('@dm <name> message')){
-  //  return emitCallback('@dm',line.substring(3));
-  // }
+  if(line.startsWith('@dm')){
+   return emitCallback('@dm',line.substring(3));
+  }
   emitCallback('@help');
 };
