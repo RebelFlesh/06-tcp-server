@@ -23,4 +23,12 @@ describe('parser', () => {
     });
   })
 
+  describe('@nickname', ()=>{
+    it('emits @nickname with trimmed new name',() =>{
+      parser('@nickname ethan\r\n',(event,newNickname) =>{
+        expect(event).toBe('@nickname');
+        expect(newNickname).toBe('ethan');
+      });
+    });
+  })
 });
