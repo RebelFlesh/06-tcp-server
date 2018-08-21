@@ -7,8 +7,11 @@ exports.parser = function(line, emitCallback) {
   if(line.startsWith('@list')){
     return emitCallback('@list',line.substring(6))
   }
-  //  emit @dm with [name, message]
-  //if line starts with @nick <name>,
-  //  emit @nick with [name]
+  if(line.startsWith('@nickname')){
+    return emitCallback('@nickname',line.substring(9));
+  }
+  // if(line.startsWith('@dm <name> message')){
+  //  return emitCallback('@dm',line.substring(3));
+  // }
   emitCallback('@help');
 };
