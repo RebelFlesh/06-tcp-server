@@ -1,8 +1,8 @@
 'use strict';
 
 exports.parser = function(line, emitCallback) {
-  if(line === '\r\n'){
-    return emitCallback('@help');
+  if(line.startsWith('@all')){
+    return emitCallback('@all',line.substring(5));
   }
   //TODO: Actually implement
   emitCallback('@all',line);
@@ -11,4 +11,5 @@ exports.parser = function(line, emitCallback) {
   //  emit @dm with [name, message]
   //if line starts with @nick <name>,
   //  emit @nick with [name]
+  emitCallback('@help');
 };
