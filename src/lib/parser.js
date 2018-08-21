@@ -7,11 +7,18 @@ exports.parser = function(line, emitCallback) {
   if(line.startsWith('@list')){
     return emitCallback('@list',line.substring(6))
   }
-  if(line.startsWith('@nickname')){
-    return emitCallback('@nickname',line.substring(9));
+  if(line.startsWith('@nickname ')){
+    return emitCallback('@nickname',line.substring(10).trim());
   }
-  if(line.startsWith('@dm')){
-   return emitCallback('@dm',line.substring(3));
+  if(line.startsWith('@dm ')){
+    var spaceAfterName = line.indexOf(' ', 4);
+    if (spaceAfterName > 0) {
+      var target = line.substring(4, spaceAfterName);
+      var message = line.substring(spaceAfterName + 1).trim() + '\r\n';
+      if (message.length > 2) {
+        return emitCallback('@dm', target, message);
+      }
+    }
   }
   emitCallback('@help');
 };
