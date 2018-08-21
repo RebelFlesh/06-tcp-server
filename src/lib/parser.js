@@ -7,6 +7,9 @@ exports.parser = function(line, emitCallback) {
   if(line.startsWith('@list')){
     return emitCallback('@list',line.substring(6))
   }
+  if(line.startsWith('@nickname ')){
+    return emitCallback('@nickname',line.substring(10).trim());
+  }
   if(line.startsWith('@dm ')){
     var spaceAfterName = line.indexOf(' ',4);
     if(spaceAfterName > 0){
